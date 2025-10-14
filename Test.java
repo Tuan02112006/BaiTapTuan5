@@ -66,7 +66,7 @@ public class Test {
                 case 4:
                     System.out.print("Nhập mã sách cần tìm: ");
                     String maTim = sc.nextLine();
-                    sach kq = ql.timKiem(maTim);
+                    Sach kq = ql.timKiem(maTim);
                     if (kq != null)
                         System.out.println(" Tìm thấy: " + kq);
                     else

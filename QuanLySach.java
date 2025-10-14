@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 
 public class QuanLySach {
-    private ArrayList<sach> danhSachSach = new ArrayList<>();
+    private ArrayList<Sach> danhSachSach = new ArrayList<>();
 
     // Thêm sách
-    public void themSach(sach s) {
+    public void themSach(Sach s) {
         danhSachSach.add(s);
     }
 
     // Xóa sách
     public boolean xoaSach(String maSach) {
-        for (sach s : danhSachSach) {
+        for (Sach s : danhSachSach) {
             if (s.getMaSach().equalsIgnoreCase(maSach)) {
                 danhSachSach.remove(s);
                 return true;
@@ -21,7 +21,7 @@ public class QuanLySach {
 
     // Cập nhật giá sách
     public boolean capNhatGia(String maSach, double giaMoi) {
-        for (sach s : danhSachSach) {
+        for (Sach s : danhSachSach) {
             if (s.getMaSach().equalsIgnoreCase(maSach)) {
                 s.giaTien = giaMoi;
                 return true;
@@ -31,8 +31,8 @@ public class QuanLySach {
     }
 
     // Tìm kiếm
-    public sach timKiem(String maSach) {
-        for (sach s : danhSachSach) {
+    public Sach timKiem(String maSach) {
+        for (Sach s : danhSachSach) {
             if (s.getMaSach().equalsIgnoreCase(maSach)) {
                 return s;
             }
@@ -46,7 +46,7 @@ public class QuanLySach {
             System.out.println("Danh sách trống!");
             return;
         }
-        for (sach s : danhSachSach) {
+        for (Sach s : danhSachSach) {
             System.out.println(s);
         }
     }
