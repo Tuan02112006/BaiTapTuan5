@@ -1,28 +1,17 @@
-public class SachTieuThuyet extends Sach {
+public class SachTieuThuyet extends Sach{
     private String theLoai;
     private boolean laSachSeries;
 
     public SachTieuThuyet(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong,
-                          String theLoai, boolean laSachSeries) {
-        super(maSach, tieuDe, tacGia, namXuatBan, soLuong);
+                          double giaCoBan, String theLoai, boolean laSachSeries) {
+        super(maSach, tieuDe, tacGia, namXuatBan, soLuong, giaCoBan);
         this.theLoai = theLoai;
         this.laSachSeries = laSachSeries;
     }
 
-    public String getTheLoai() {
-        return theLoai;
-    }
-
-    public void setTheLoai(String theLoai) {
-        this.theLoai = theLoai;
-    }
-
-    public boolean isLaSachSeries() {
-        return laSachSeries;
-    }
-
-    public void setLaSachSeries(boolean laSachSeries) {
-        this.laSachSeries = laSachSeries;
+    @Override
+    public double tinhGiaBan() {
+        return getGiaCoBan() + (laSachSeries ? 15000 : 0);
     }
 
     @Override
@@ -33,8 +22,10 @@ public class SachTieuThuyet extends Sach {
                 "Tác giả: " + getTacGia() + "\n" +
                 "Năm xuất bản: " + getNamXuatBan() + "\n" +
                 "Số lượng: " + getSoLuong() + "\n" +
+                "Giá cơ bản: " + getGiaCoBan() + " VNĐ\n" +
                 "Thể loại: " + theLoai + "\n" +
                 "Là sách series: " + (laSachSeries ? "Có" : "Không") + "\n" +
+                "Giá bán ước tính: " + tinhGiaBan() + " VNĐ\n" +
                 "=============================";
     }
 }

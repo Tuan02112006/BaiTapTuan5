@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class QuanLySach {
     private Sach[] danhSachSach;
     private int soLuong; // số lượng sách hiện có
@@ -64,13 +66,16 @@ public class QuanLySach {
     // Hiển thị danh sách sách
     public void hienThiDanhSach() {
         if (soLuong == 0) {
-            System.out.println("Danh sach sach trong!");
+            System.out.println("Danh sách sách trống!");
             return;
         }
         for (int i = 0; i < soLuong; i++) {
             System.out.println(danhSachSach[i]);
+            System.out.println("→ Giá bán ước tính: " + danhSachSach[i].tinhGiaBan() + " VNĐ");
+            System.out.println("-----------------------------");
         }
     }
+
 
     // Lấy số lượng sách hiện có
     public int getSoLuong() {

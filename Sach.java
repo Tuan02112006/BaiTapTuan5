@@ -1,21 +1,26 @@
-public class Sach {
+public abstract class Sach {
     private String maSach;
     private String tieuDe;
     private String tacGia;
     private int namXuatBan;
     private int soLuong;
+    private double giaCoBan; // Thuộc tính mới
 
+    // Constructor không tham số
     public Sach() {
     }
 
-    public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong) {
+    // Constructor có tham số
+    public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong, double giaCoBan) {
         this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
         this.namXuatBan = namXuatBan;
         this.soLuong = soLuong;
+        this.giaCoBan = giaCoBan;
     }
 
+    // Getter & Setter
     public String getMaSach() {
         return maSach;
     }
@@ -56,6 +61,18 @@ public class Sach {
         this.soLuong = soLuong;
     }
 
+    public double getGiaCoBan() {
+        return giaCoBan;
+    }
+
+    public void setGiaCoBan(double giaCoBan) {
+        this.giaCoBan = giaCoBan;
+    }
+
+    // Phương thức trừu tượng - bắt buộc các lớp con phải cài đặt
+    public abstract double tinhGiaBan();
+
+    // Phương thức hiển thị thông tin
     public void hienThiThongTin() {
         System.out.println("===== THÔNG TIN SÁCH =====");
         System.out.println("Mã sách: " + maSach);
@@ -63,6 +80,7 @@ public class Sach {
         System.out.println("Tác giả: " + tacGia);
         System.out.println("Năm xuất bản: " + namXuatBan);
         System.out.println("Số lượng: " + soLuong);
+        System.out.println("Giá cơ bản: " + giaCoBan);
         System.out.println("===========================");
     }
 }
