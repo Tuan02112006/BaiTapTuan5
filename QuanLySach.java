@@ -16,9 +16,8 @@ public class QuanLySach {
     // ======= THÊM SÁCH =======
     public void themSach() {
         System.out.println("Chọn loại sách muốn thêm:");
-        System.out.println("1. Sách thường");
-        System.out.println("2. Sách giáo trình");
-        System.out.println("3. Sách tiểu thuyết");
+        System.out.println("1. Sách giáo trình");
+        System.out.println("2. Sách tiểu thuyết");
         System.out.print("Nhập lựa chọn: ");
         int chon = Integer.parseInt(sc.nextLine());
 
@@ -32,24 +31,23 @@ public class QuanLySach {
         int nam = Integer.parseInt(sc.nextLine());
         System.out.print("Số lượng: ");
         int sl = Integer.parseInt(sc.nextLine());
-
-        Sach s;
-        if (chon == 2) {
+        System.out.println("Nhập giá cơ bản: ");
+        double cb = sc.nextDouble();
+        sc.nextLine(); // bỏ dòng trống
+        Sach s= null;
+        if (chon == 1) {
             System.out.print("Môn học: ");
             String mon = sc.nextLine();
             System.out.print("Cấp độ: ");
             String cap = sc.nextLine();
-            s = new SachGiaoTrinh(ma, td, tg, nam, sl, mon, cap);
-        } else if (chon == 3) {
+            s = new SachGiaoTrinh(ma, td, tg, nam, sl,cb, mon, cap);
+        } else if (chon == 2) {
             System.out.print("Thể loại: ");
             String theLoai = sc.nextLine();
             System.out.print("Có phải series (true/false): ");
             boolean series = Boolean.parseBoolean(sc.nextLine());
-            s = new SachTieuThuyet(ma, td, tg, nam, sl, theLoai, series);
-        } else {
-            s = new Sach(ma, td, tg, nam, sl);
+            s = new SachTieuThuyet(ma, td, tg, nam, sl, cb, theLoai, series);
         }
-
         danhSach.add(s);
         System.out.println("- Thêm sách thành công!");
     }
@@ -101,19 +99,23 @@ public class QuanLySach {
         System.out.println("Nhập thông tin mới (bỏ trống để giữ nguyên):");
         System.out.print("Tiêu đề: ");
         String td = sc.nextLine();
-        if (!td.isEmpty()) s.setTieuDe(td);
+        if (!td.isEmpty())
+            s.setTieuDe(td);
 
         System.out.print("Tác giả: ");
         String tg = sc.nextLine();
-        if (!tg.isEmpty()) s.setTacGia(tg);
+        if (!tg.isEmpty())
+            s.setTacGia(tg);
 
         System.out.print("Năm xuất bản (Enter bỏ qua): ");
         String namStr = sc.nextLine();
-        if (!namStr.isEmpty()) s.setNamXuatBan(Integer.parseInt(namStr));
+        if (!namStr.isEmpty())
+            s.setNamXuatBan(Integer.parseInt(namStr));
 
         System.out.print("Số lượng (Enter bỏ qua): ");
         String slStr = sc.nextLine();
-        if (!slStr.isEmpty()) s.setSoLuong(Integer.parseInt(slStr));
+        if (!slStr.isEmpty())
+            s.setSoLuong(Integer.parseInt(slStr));
 
         // nếu là giáo trình
         if (s instanceof SachGiaoTrinh sg) {
@@ -127,7 +129,7 @@ public class QuanLySach {
         }
 
         // nếu là tiểu thuyết
-        if (s instanceof SachTieuThuyet st) {
+        if (s instanceof SachTieuThuyet st){
             System.out.print("Thể loại: ");
             String tl = sc.nextLine();
             if (!tl.isEmpty()) st.settheLoai(tl);

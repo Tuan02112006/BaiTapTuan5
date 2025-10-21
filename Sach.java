@@ -1,21 +1,23 @@
 import java.util.Scanner;
 
-public class Sach {
+public abstract class Sach {
     private String maSach;
     private String tieuDe;
     private String tacGia;
     private int namXuatBan;
     private int soLuong;
+    private double giaCoBan;
 
     public Sach() {
     }
 
-    public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong) {
+    public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong, double giaCoBan) {
         this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
         this.namXuatBan = namXuatBan;
         this.soLuong = soLuong;
+        this.giaCoBan = giaCoBan;
     }
 
     public String getMaSach() {
@@ -58,12 +60,20 @@ public class Sach {
         this.soLuong = soLuong;
     }
 
+    public double getGiaCoBan(){
+        return giaCoBan;
+    }
+    public void setGiaCoBan(double giaCoBan){
+        this.giaCoBan = giaCoBan;
+    }
+
     public void hienThiThongTin() {
         System.out.println("Mã sách: " + maSach);
         System.out.println("Tiêu đề: " + tieuDe);
         System.out.println("Tác giả: " + tacGia);
         System.out.println("Năm xuất bản: " + namXuatBan);
         System.out.println("Số lượng: " + soLuong);
+        System.out.println("Giá cơ bản: "+ giaCoBan);
     }
 
     @Override
@@ -72,7 +82,10 @@ public class Sach {
                 "Tiêu đề: " + tieuDe + "\n" +
                 "Tác giả: " + tacGia + "\n" +
                 "Năm xuất bản: " + namXuatBan + "\n" +
-                "Số lượng: " + soLuong + "\n";
+                "Số lượng: " + soLuong + "\n"+
+                "Giá cơ bản: "+ giaCoBan+ "\n";
     }
+
+    public abstract double tinhGiaBan();
 }
 
