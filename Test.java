@@ -20,85 +20,89 @@ public class Test {
             sc.nextLine(); // bỏ dòng thừa
 
             switch (chon) {
-                case 1:
-                    System.out.print("Nhập mã sách: ");
-                    String ma1 = sc.nextLine();
+                case 1 -> {
+                    System.out.println("=== Thêm Sách Giáo Trình ===");
+                    System.out.print("Mã sách: ");
+                    String ma = sc.nextLine();
                     System.out.print("Tên sách: ");
-                    String ten1 = sc.nextLine();
+                    String ten = sc.nextLine();
                     System.out.print("Tác giả: ");
-                    String tg1 = sc.nextLine();
-                    System.out.print("Giá: ");
-                    double gia1 = sc.nextDouble();
-                    System.out.print("Năm XB: ");
-                    int nam1 = sc.nextInt(); sc.nextLine();
+                    String tg = sc.nextLine();
+                    System.out.print("Giá tiền: ");
+                    double gia = sc.nextDouble();
+                    System.out.print("Năm xuất bản: ");
+                    int nam = sc.nextInt();
+                    System.out.print("Giá cơ bản: ");
+                    double giaCoBan = sc.nextDouble();
+                    sc.nextLine(); // bỏ dòng
                     System.out.print("Môn học: ");
                     String mon = sc.nextLine();
                     System.out.print("Cấp độ: ");
-                    String cap = sc.nextLine();
-                    ql.themSach(new SachGiaoTrinh(ma1, ten1, tg1, gia1, nam1, mon, cap));
+                    String capDo = sc.nextLine();
+
+                    ql.themSach(new SachGiaoTrinh(ma, ten, tg, gia, nam, giaCoBan, mon, capDo));
                     System.out.println(" Đã thêm sách giáo trình!");
-                    break;
+                }
 
-                case 2:
-                    System.out.print("Nhập mã sách: ");
-                    String ma2 = sc.nextLine();
+                case 2 -> {
+                    System.out.println("=== Thêm Sách Tiểu Thuyết ===");
+                    System.out.print("Mã sách: ");
+                    String ma = sc.nextLine();
                     System.out.print("Tên sách: ");
-                    String ten2 = sc.nextLine();
+                    String ten = sc.nextLine();
                     System.out.print("Tác giả: ");
-                    String tg2 = sc.nextLine();
-                    System.out.print("Giá: ");
-                    double gia2 = sc.nextDouble();
-                    System.out.print("Năm XB: ");
-                    int nam2 = sc.nextInt(); sc.nextLine();
+                    String tg = sc.nextLine();
+                    System.out.print("Giá tiền: ");
+                    double gia = sc.nextDouble();
+                    System.out.print("Năm xuất bản: ");
+                    int nam = sc.nextInt();
+                    System.out.print("Giá cơ bản: ");
+                    double giaCoBan = sc.nextDouble();
+                    sc.nextLine(); // bỏ dòng
                     System.out.print("Thể loại: ");
-                    String tl = sc.nextLine();
-                    System.out.print("Có phải series : ");
-                    boolean series = sc.nextBoolean();
-                    ql.themSach(new SachTieuThuyet(ma2, ten2, tg2, gia2, nam2,tl, series));
+                    String theLoai = sc.nextLine();
+                    System.out.print("Có phải sách series (true/false): ");
+                    boolean laSeries = sc.nextBoolean();
+
+                    ql.themSach(new SachTieuThuyet(ma, ten, tg, gia, nam, giaCoBan, theLoai, laSeries));
                     System.out.println(" Đã thêm sách tiểu thuyết!");
-                    break;
+                }
 
-                case 3:
-                    System.out.println("\n=== DANH SÁCH SÁCH ===");
-                    ql.hienThi();
-                    break;
+                case 3 -> ql.hienThi();
 
-                case 4:
+                case 4 -> {
                     System.out.print("Nhập mã sách cần tìm: ");
                     String maTim = sc.nextLine();
                     Sach kq = ql.timKiem(maTim);
                     if (kq != null)
                         System.out.println(" Tìm thấy: " + kq);
                     else
-                        System.out.println(" Không tìm thấy");
-                    break;
+                        System.out.println(" Không tìm thấy sách!");
+                }
 
-                case 5:
+                case 5 -> {
                     System.out.print("Nhập mã sách cần cập nhật: ");
                     String maCap = sc.nextLine();
                     System.out.print("Nhập giá mới: ");
                     double giaMoi = sc.nextDouble();
                     if (ql.capNhatGia(maCap, giaMoi))
-                        System.out.println(" Cập nhật thành công");
+                        System.out.println(" Cập nhật thành công!");
                     else
-                        System.out.println(" Không tìm thấy mã sách");
-                    break;
+                        System.out.println(" Không tìm thấy mã sách!");
+                }
 
-                case 6:
+                case 6 -> {
                     System.out.print("Nhập mã sách cần xóa: ");
                     String maXoa = sc.nextLine();
                     if (ql.xoaSach(maXoa))
-                        System.out.println(" Đã xóa!");
+                        System.out.println(" Đã xóa sách!");
                     else
-                        System.out.println(" Không tìm thấy mã sách");
-                    break;
+                        System.out.println(" Không tìm thấy mã sách!");
+                }
 
-                case 0:
-                    System.out.println(" Kết thúc chương trình.");
-                    break;
+                case 0 -> System.out.println(" Kết thúc chương trình!");
 
-                default:
-                    System.out.println(" Lựa chọn không hợp lệ");
+                default -> System.out.println("⚠ Lựa chọn không hợp lệ!");
             }
 
         } while (chon != 0);
