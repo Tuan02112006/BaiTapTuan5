@@ -2,31 +2,81 @@ public class Test {
     public static void main(String[] args) {
         QuanLySach ql = new QuanLySach();
 
-        // Thêm sách thường
-        Sach s1 = new Sach("S01", "Lập trình Java", "Nguyễn Văn A", 2023, 5);
-        ql.themSach(s1);
-
-        // Thêm sách giáo trình (lớp con)
-        SachGiaoTrinh g1 = new SachGiaoTrinh("G01", "Toán rời rạc", "Trần Thị B", 2020, 10, "Toán", "Đại học");
+        // === Thêm sách giáo trình ===
+        Sach g1 = new SachGiaoTrinh(
+                "G01",
+                "Toán rời rạc",
+                "Trần Thị B",
+                2020,
+                10,
+                120000,     // giá cơ bản
+                "Toán",
+                "Đại học"
+        );
         ql.themSach(g1);
 
-        // Thêm sách tiểu thuyết (lớp con)
-        SachTieuThuyet t1 = new SachTieuThuyet("T01", "Hoàng tử bé", "Saint-Exupéry", 1943, 7, "Truyện thiếu nhi", false);
+        Sach g2 = new SachGiaoTrinh(
+                "G02",
+                "Cấu trúc dữ liệu & Giải thuật",
+                "Nguyễn Văn C",
+                2018,
+                7,
+                150000,
+                "CNTT",
+                "Đại học"
+        );
+        ql.themSach(g2);
+
+        // === Thêm sách tiểu thuyết ===
+        Sach t1 = new SachTieuThuyet(
+                "T01",
+                "Hoàng tử bé",
+                "Saint-Exupéry",
+                1943,
+                5,
+                80000,
+                "Thiếu nhi",
+                false
+        );
         ql.themSach(t1);
 
-        System.out.println("\n=== Danh sách sách hiện có ===");
+        Sach t2 = new SachTieuThuyet(
+                "T02",
+                "Harry Potter",
+                "J.K. Rowling",
+                2000,
+                8,
+                90000,
+                "Phiêu lưu",
+                true
+        );
+        ql.themSach(t2);
+
+        // === Hiển thị danh sách ===
+        System.out.println("\n=== DANH SÁCH SÁCH HIỆN CÓ ===");
         ql.hienThiDanhSach();
 
-        System.out.println("\n=== Tìm sách có mã G01 ===");
-        ql.timKiemVaIn("G01");
+        // === Tìm sách ===
+        System.out.println("\n=== TÌM SÁCH CÓ MÃ G02 ===");
+        ql.timKiemVaIn("G02");
 
-        System.out.println("\n=== Cập nhật số lượng sách S01 ===");
-        ql.capNhatSoLuong("S01", 15);
+        // === Cập nhật số lượng ===
+        System.out.println("\n=== CẬP NHẬT SỐ LƯỢNG SÁCH T01 ===");
+        ql.capNhatSoLuong("T01", 12);
 
-        System.out.println("\n=== Xóa sách mã T01 ===");
-        ql.xoaSach("T01");
+        // === Cập nhật giá cơ bản ===
+        System.out.println("\n=== CẬP NHẬT GIÁ CƠ BẢN SÁCH G01 ===");
+        ql.capNhatGiaCoBan("G01", 130000);
 
-        System.out.println("\n=== Danh sách sau khi xóa ===");
+        // === Xóa sách ===
+        System.out.println("\n=== XÓA SÁCH MÃ G02 ===");
+        ql.xoaSach("G02");
+
+        // === Hiển thị danh sách sau khi cập nhật ===
+        System.out.println("\n=== DANH SÁCH SAU KHI CẬP NHẬT ===");
         ql.hienThiDanhSach();
+
+        // === Thống kê tổng số sách ===
+        System.out.println("\n Tổng số sách hiện có: " + ql.soLuongSach());
     }
 }
