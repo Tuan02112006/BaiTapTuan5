@@ -1,6 +1,7 @@
 public class Test {
     public static void main(String[] args) {
-        QuanLySach ql = new QuanLySach();
+        // 🔹 Khởi tạo theo kiểu Interface (theo yêu cầu đề)
+        IQuanLySach ql = new QuanLySach();
 
         // === Thêm sách giáo trình ===
         Sach g1 = new SachGiaoTrinh(

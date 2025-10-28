@@ -1,105 +1,66 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class QuanLySach {
-    private final List<Sach> danhSach;
+public class QuanLySach implements IQuanLySach {
+    private List<Sach> danhSach = new ArrayList<>();
 
-    public QuanLySach() {
-        this.danhSach = new ArrayList<>();
-    }
-
-    // 🔹 Thêm sách (kiểm tra trùng mã)
+    @Override
     public void themSach(Sach s) {
-        if (s == null) {
-            System.out.println(" Không thể thêm sách null.");
-            return;
-        }
-        if (timKiemObj(s.getMaSach()).isPresent()) {
-            System.out.println("️ Mã sách đã tồn tại: " + s.getMaSach() + " — không thêm.");
-            return;
-        }
         danhSach.add(s);
-        System.out.println(" Đã thêm sách: " + s.getMaSach());
     }
 
-    // 🔹 Xóa sách theo mã
+    @Override
     public boolean xoaSach(String maSach) {
-        boolean removed = danhSach.removeIf(s -> s.getMaSach().equalsIgnoreCase(maSach));
-        if (removed)
-            System.out.println(" Đã xóa sách có mã: " + maSach);
-        else
-            System.out.println(" Không tìm thấy sách có mã: " + maSach);
-        return removed;
+        return danhSach.removeIf(s -> s.getMaSach().equalsIgnoreCase(maSach));
     }
 
-    // 🔹 Cập nhật số lượng theo mã sách
+    @Override
     public boolean capNhatSoLuong(String maSach, int soLuongMoi) {
-        Optional<Sach> opt = timKiemObj(maSach);
-        if (opt.isPresent()) {
-            Sach s = opt.get();
-            s.setSoLuong(soLuongMoi);
-            System.out.println(" Cập nhật số lượng sách (mã=" + maSach + ") thành: " + soLuongMoi);
-            return true;
-        } else {
-            System.out.println(" Không tìm thấy sách có mã: " + maSach);
-            return false;
+        for (Sach s : danhSach) {
+            if (s.getMaSach().equalsIgnoreCase(maSach)) {
+                s.setSoLuong(soLuongMoi);
+                return true;
+            }
         }
+        return false;
     }
 
-    // 🔹 Cập nhật giá cơ bản
+    @Override
     public boolean capNhatGiaCoBan(String maSach, double giaMoi) {
-        Optional<Sach> opt = timKiemObj(maSach);
-        if (opt.isPresent()) {
-            Sach s = opt.get();
-            s.setGiaCoBan(giaMoi);
-            System.out.println(" Cập nhật giá cơ bản sách (mã=" + maSach + ") thành: " + giaMoi);
-            return true;
-        } else {
-            System.out.println(" Không tìm thấy sách có mã: " + maSach);
-            return false;
+        for (Sach s : danhSach) {
+            if (s.getMaSach().equalsIgnoreCase(maSach)) {
+                s.setGiaCoBan(giaMoi);
+                return true;
+            }
         }
+        return false;
     }
 
-    // 🔹 Tìm kiếm đối tượng theo mã
-    public Optional<Sach> timKiemObj(String maSach) {
-        return danhSach.stream()
-                .filter(s -> s.getMaSach().equalsIgnoreCase(maSach))
-                .findFirst();
-    }
-
-    // 🔹 Tìm kiếm và in kết quả
+    @Override
     public void timKiemVaIn(String maSach) {
-        timKiemObj(maSach).ifPresentOrElse(
-                s -> {
-                    System.out.println(" Tìm thấy sách:");
-                    System.out.println(s);
-                    System.out.println("  Giá bán: " + s.TinhGiaBan());
-                },
-                () -> System.out.println(" Không tìm thấy sách có mã: " + maSach)
-        );
+        for (Sach s : danhSach) {
+            if (s.getMaSach().equalsIgnoreCase(maSach)) {
+                System.out.println(s);
+                return;
+            }
+        }
+        System.out.println("Không tìm thấy sách có mã: " + maSach);
     }
 
-    // 🔹 Hiển thị danh sách tất cả sách
+    @Override
     public void hienThiDanhSach() {
-        if (danhSach.isEmpty()) {
-            System.out.println(" Danh sách rỗng.");
-            return;
-        }
-        System.out.println("===== DANH SÁCH SÁCH =====");
         for (Sach s : danhSach) {
             System.out.println(s);
         }
-        System.out.println("==========================");
     }
 
-    // 🔹 Tổng số lượng sách
+    @Override
     public int soLuongSach() {
         return danhSach.size();
     }
 
-    // 🔹 Lấy danh sách (sao chép)
+    @Override
     public List<Sach> getDanhSach() {
-        return new ArrayList<>(danhSach);
+        return danhSach;
     }
 }
