@@ -1,53 +1,61 @@
-import java.util.ArrayList;
 
-public class QuanLySach {
-    private ArrayList<Sach> danhSachSach = new ArrayList<>();
+import java.util.ArrayList;
+import java.util.List;
+
+public class QuanLySach implements IQuanLySach {
+    private List<Sach> danhSachSach;
+
+    public QuanLySach() {
+        danhSachSach = new ArrayList<>();
+    }
 
     // Thêm sách
-    public void themSach(Sach s) {
-        danhSachSach.add(s);
+    @Override
+    public void themSach(Sach sach) {
+        danhSachSach.add(sach);
+        System.out.println("Đã thêm sách: " + sach.getTieuDe());
     }
 
-    // Xóa sách
-    public boolean xoaSach(String maSach) {
+    // Tìm kiếm sách theo tiêu đề
+    @Override
+    public Sach timKiemSach(String tieuDe) {
         for (Sach s : danhSachSach) {
-            if (s.getMaSach().equalsIgnoreCase(maSach)) {
-                danhSachSach.remove(s);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Cập nhật giá sách
-    public boolean capNhatGia(String maSach, double giaMoi) {
-        for (Sach s : danhSachSach) {
-            if (s.getMaSach().equalsIgnoreCase(maSach)) {
-                s.giaTien = giaMoi;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Tìm kiếm
-    public Sach timKiem(String maSach) {
-        for (Sach s : danhSachSach) {
-            if (s.getMaSach().equalsIgnoreCase(maSach)) {
+            if (s.getTieuDe().equalsIgnoreCase(tieuDe)) {
                 return s;
             }
         }
         return null;
     }
 
-    // Hiển thị
-    public void hienThi() {
+    // Xóa sách theo tiêu đề
+    @Override
+    public boolean xoaSach(String tieuDe) {
+        Sach sach = timKiemSach(tieuDe);
+        if (sach != null) {
+            danhSachSach.remove(sach);
+            System.out.println("Đã xóa sách: " + tieuDe);
+            return true;
+        }
+        System.out.println("Không tìm thấy sách có tiêu đề: " + tieuDe);
+        return false;
+    }
+
+    // Hiển thị danh sách sách
+    @Override
+    public void hienThiDanhSach() {
         if (danhSachSach.isEmpty()) {
-            System.out.println("Danh sách trống!");
+            System.out.println("Danh sách sách trống!");
             return;
         }
+        System.out.println("===== DANH SÁCH SÁCH =====");
         for (Sach s : danhSachSach) {
             System.out.println(s);
         }
+    }
+
+    //  Lấy danh sách hiện tại (tuỳ chọn)
+    @Override
+    public List<Sach> getDanhSachSach() {
+        return danhSachSach;
     }
 }
