@@ -1,32 +1,44 @@
-public class SachGiaoTrinh extends Sach{
+public class SachGiaoTrinh extends Sach {
     private String monHoc;
     private String capDo;
 
-    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong,
-                         double giaCoBan, String monHoc, String capDo) {
-        super(maSach, tieuDe, tacGia, namXuatBan, soLuong, giaCoBan);
+    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, double giaCoBan,
+                         int soLuong, String viTri, String monHoc, String capDo) {
+        super(maSach, tieuDe, tacGia, giaCoBan, soLuong, viTri);
         this.monHoc = monHoc;
         this.capDo = capDo;
     }
 
+    // Ghi đè tính giá bán: Giá = giá cơ bản * 1.1
     @Override
     public double tinhGiaBan() {
-        int soNam = 2025 - getNamXuatBan();
-        return getGiaCoBan() + (soNam * 5000);
+        return getGiaCoBan() * 1.1;
     }
 
+    // Kiểm kê tồn kho
+    @Override
+    public boolean kiemTraTonKho(int soLuongToiThieu) {
+        return getSoLuong() >= soLuongToiThieu;
+    }
+
+    // Cập nhật vị trí
+    @Override
+    public void capNhatViTri(String viTriMoi) {
+        setViTri(viTriMoi);
+        System.out.println("Đã chuyển sách \"" + getTieuDe() + "\" đến khu vực: " + viTriMoi);
+    }
+
+    // Hiển thị thông tin
     @Override
     public String toString() {
-        return "===== SÁCH GIÁO TRÌNH =====\n" +
-                "Mã sách: " + getMaSach() + "\n" +
-                "Tiêu đề: " + getTieuDe() + "\n" +
-                "Tác giả: " + getTacGia() + "\n" +
-                "Năm xuất bản: " + getNamXuatBan() + "\n" +
-                "Số lượng: " + getSoLuong() + "\n" +
-                "Giá cơ bản: " + getGiaCoBan() + " VNĐ\n" +
-                "Môn học: " + monHoc + "\n" +
-                "Cấp độ: " + capDo + "\n" +
-                "Giá bán ước tính: " + tinhGiaBan() + " VNĐ\n" +
-                "=============================";
+        return "Sách Giáo Trình [" +
+                "Mã: " + getMaSach() +
+                ", Tiêu đề: " + getTieuDe() +
+                ", Tác giả: " + getTacGia() +
+                ", Môn học: " + monHoc +
+                ", Cấp độ: " + capDo +
+                ", Giá bán: " + String.format("%.2f", tinhGiaBan())+
+                ", Tồn kho: " + getSoLuong() +
+                ", Vị trí: " + getViTri() + "]";
     }
 }

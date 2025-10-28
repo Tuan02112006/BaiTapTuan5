@@ -1,23 +1,18 @@
-public abstract class Sach {
+public abstract class Sach implements IGiaBan, IKiemKe {
     private String maSach;
     private String tieuDe;
     private String tacGia;
-    private int namXuatBan;
+    private double giaCoBan;
     private int soLuong;
-    private double giaCoBan; // Thuộc tính mới
+    private String viTri;
 
-    // Constructor không tham số
-    public Sach() {
-    }
-
-    // Constructor có tham số
-    public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong, double giaCoBan) {
+    public Sach(String maSach, String tieuDe, String tacGia, double giaCoBan, int soLuong, String viTri) {
         this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
-        this.namXuatBan = namXuatBan;
-        this.soLuong = soLuong;
         this.giaCoBan = giaCoBan;
+        this.soLuong = soLuong;
+        this.viTri = viTri;
     }
 
     // Getter & Setter
@@ -45,12 +40,12 @@ public abstract class Sach {
         this.tacGia = tacGia;
     }
 
-    public int getNamXuatBan() {
-        return namXuatBan;
+    public double getGiaCoBan() {
+        return giaCoBan;
     }
 
-    public void setNamXuatBan(int namXuatBan) {
-        this.namXuatBan = namXuatBan;
+    public void setGiaCoBan(double giaCoBan) {
+        this.giaCoBan = giaCoBan;
     }
 
     public int getSoLuong() {
@@ -61,26 +56,14 @@ public abstract class Sach {
         this.soLuong = soLuong;
     }
 
-    public double getGiaCoBan() {
-        return giaCoBan;
+    public String getViTri() {
+        return viTri;
     }
 
-    public void setGiaCoBan(double giaCoBan) {
-        this.giaCoBan = giaCoBan;
+    public void setViTri(String viTri) {
+        this.viTri = viTri;
     }
 
-    // Phương thức trừu tượng - bắt buộc các lớp con phải cài đặt
-    public abstract double tinhGiaBan();
-
-    // Phương thức hiển thị thông tin
-    public void hienThiThongTin() {
-        System.out.println("===== THÔNG TIN SÁCH =====");
-        System.out.println("Mã sách: " + maSach);
-        System.out.println("Tiêu đề: " + tieuDe);
-        System.out.println("Tác giả: " + tacGia);
-        System.out.println("Năm xuất bản: " + namXuatBan);
-        System.out.println("Số lượng: " + soLuong);
-        System.out.println("Giá cơ bản: " + giaCoBan);
-        System.out.println("===========================");
-    }
+    // Abstract: ghi đè ở lớp con
+    public abstract String toString();
 }
