@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public abstract class Sach {
+public abstract class Sach implements IGiaBan, IKiemKe {
     private String maSach;
     private String tieuDe;
     private String tacGia;
@@ -86,6 +86,17 @@ public abstract class Sach {
                 "Giá cơ bản: "+ giaCoBan+ "\n";
     }
 
+    @Override
     public abstract double tinhGiaBan();
+
+    @Override
+    public boolean kiemTraTonKho(int soLuongToiThieu){
+        return this.soLuong >= soLuongToiThieu;
+    }
+
+    @Override
+    public void capNhatViTri(String viTriMoi){
+        System.out.println("Đã chuyển sách "+this.tieuDe+" đến khu vực : "+viTriMoi);
+    }
 }
 
