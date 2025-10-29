@@ -1,81 +1,90 @@
-public abstract class Sach {
-    protected String maSach;
-    protected String tenSach;
+// Sach.java
+public abstract class Sach implements IGiaBan, IKiemKe {
+
+
+    protected String tieuDe;
     protected String tacGia;
-    protected double giaTien;
     protected int namXuatBan;
-    protected double giaCoban;
+    protected double giaCoBan;
+    protected int soLuong;
+    protected String viTri;
 
-    public Sach(String maSach, String tenSach, String tacGia, double giaTien, int namXuatBan,double giaCoban) {
-        this.maSach = maSach;
-        this.tenSach = tenSach;
+    public Sach(String tieuDe, String tacGia, int namXuatBan, double giaCoBan, int soLuong, String viTri) {
+        this.tieuDe = tieuDe;
         this.tacGia = tacGia;
-        this.giaTien = giaTien;
         this.namXuatBan = namXuatBan;
-        this.giaCoban = giaCoban;
+        this.giaCoBan = giaCoBan;
+        this.soLuong = soLuong;
+        this.viTri = viTri;
     }
 
-    public String getMaSach() {
-        return maSach;
+
+    public String getTieuDe() {
+        return tieuDe;
     }
 
-    public void setMaSach(String maSach) {
-        this.maSach = maSach;
+    public void setTieuDe(String tieuDe) {
+        this.tieuDe = tieuDe;
     }
 
-    public String getTenSach(){
-           return tenSach;
+    public String getTacGia() {
+        return tacGia;
     }
 
-    public void setTenSach(String Tensach){
-        this.tenSach = tenSach;
-    }
-
-    public String getTacGia(){
-         return tacGia;
-    }
-
-    public void setTacGia(String tacGia){
+    public void setTacGia(String tacGia) {
         this.tacGia = tacGia;
     }
 
-    public double getGiaTien(){
-        return giaTien;
-    }
-
-    public void setGiaTien(double giaTien){
-        this.giaTien = giaTien;
-    }
-
-    public int getNamXuatBan(){
+    public int getNamXuatBan() {
         return namXuatBan;
     }
 
-    public void setNamXuatBan(int namXuatBan){
+    public void setNamXuatBan(int namXuatBan) {
         this.namXuatBan = namXuatBan;
     }
 
-    public double getGiaCoban(){
-        return giaCoban;
+    public double getGiaCoBan() {
+        return giaCoBan;
     }
 
-    public void setGiaCoban(double giaCoban){
-        this.giaCoban = giaCoban;
-    };
+    public void setGiaCoBan(double giaCoBan) {
+        this.giaCoBan = giaCoBan;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    public String getViTri() {
+        return viTri;
+    }
+
+    public void setViTri(String viTri) {
+        this.viTri = viTri;
+    }
 
 
+    @Override
+    public abstract double tinhGiaBan();
+
+    @Override
+    public abstract boolean kiemTraTonKho(int soLuongToiThieu);
+
+    @Override
+    public abstract void capNhatViTri(String viTriMoi);
 
 
     @Override
     public String toString() {
-        return "Mã sách: " + maSach +
-                ", Tên sách: " + tenSach +
+        return "Tiêu đề: " + tieuDe +
                 ", Tác giả: " + tacGia +
-                ", Giá: " + giaTien +
-                ", Năm XB: " + namXuatBan+
-                ", gia cơ bản" + giaCoban;
+                ", Năm XB: " + namXuatBan +
+                ", Giá cơ bản: " + giaCoBan +
+                ", Số lượng: " + soLuong +
+                ", Vị trí: " + viTri;
     }
-
-    public abstract double tinhgiaban();
 }
-
