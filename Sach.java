@@ -1,7 +1,5 @@
-// Sach.java
 public abstract class Sach implements IGiaBan, IKiemKe {
-
-
+    protected String maSach;
     protected String tieuDe;
     protected String tacGia;
     protected int namXuatBan;
@@ -9,7 +7,8 @@ public abstract class Sach implements IGiaBan, IKiemKe {
     protected int soLuong;
     protected String viTri;
 
-    public Sach(String tieuDe, String tacGia, int namXuatBan, double giaCoBan, int soLuong, String viTri) {
+    public Sach(String maSach, String tieuDe, String tacGia,int namXuatBan, double giaCoBan, int soLuong, String viTri) {
+        this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
         this.namXuatBan = namXuatBan;
@@ -18,6 +17,14 @@ public abstract class Sach implements IGiaBan, IKiemKe {
         this.viTri = viTri;
     }
 
+    // Getter & Setter
+    public String getMaSach() {
+        return maSach;
+    }
+
+    public void setMaSach(String maSach) {
+        this.maSach = maSach;
+    }
 
     public String getTieuDe() {
         return tieuDe;
@@ -35,12 +42,12 @@ public abstract class Sach implements IGiaBan, IKiemKe {
         this.tacGia = tacGia;
     }
 
-    public int getNamXuatBan() {
-        return namXuatBan;
-    }
-
     public void setNamXuatBan(int namXuatBan) {
         this.namXuatBan = namXuatBan;
+    }
+
+    public int getNamXuatBan() {
+        return namXuatBan;
     }
 
     public double getGiaCoBan() {
@@ -67,24 +74,29 @@ public abstract class Sach implements IGiaBan, IKiemKe {
         this.viTri = viTri;
     }
 
+    @Override
+    public String toString() {
+        return "Mã sách: " + maSach + "\n" +
+                "Tiêu đề: " + tieuDe + "\n" +
+                "Tác giả: " + tacGia + "\n" +
+                "Năm xuất bản: " + namXuatBan + "\n" +
+                "Số lượng: " + soLuong + "\n"+
+                "Giá cơ bản: "+ giaCoBan+ "\n"+
+                "Vị Trí: "+ viTri+ "\n";
+    }
 
     @Override
     public abstract double tinhGiaBan();
 
     @Override
-    public abstract boolean kiemTraTonKho(int soLuongToiThieu);
-
-    @Override
-    public abstract void capNhatViTri(String viTriMoi);
-
-
-    @Override
-    public String toString() {
-        return "Tiêu đề: " + tieuDe +
-                ", Tác giả: " + tacGia +
-                ", Năm XB: " + namXuatBan +
-                ", Giá cơ bản: " + giaCoBan +
-                ", Số lượng: " + soLuong +
-                ", Vị trí: " + viTri;
+    public boolean kiemTraTonKho(int soLuongToiThieu){
+        return this.soLuong >= soLuongToiThieu;
     }
+
+    @Override
+    public void capNhatViTri(String viTriMoi){
+        this.setViTri(viTriMoi);
+        System.out.println("Đã chuyển sách "+this.tieuDe+" đến khu vực : "+viTriMoi);
+    }
+
 }

@@ -1,64 +1,40 @@
-// SachTieuThuyet.java
 public class SachTieuThuyet extends Sach {
     private String theLoai;
-    private String series;
-    private boolean laSachSeries;
+    private boolean laSeries;
 
-    public SachTieuThuyet(String tieuDe, String tacGia, int namXuatBan,
-                          double giaCoBan, int soLuong, String viTri,
-                          String theLoai, String series) {
-        super(tieuDe, tacGia, namXuatBan, giaCoBan, soLuong, viTri);
+    public SachTieuThuyet(String maSach, String tieuDe, String tacGia,int namXuatBan, double giaCoBan, int soLuong, String viTri, String theLoai, boolean laSeries) {
+        super(maSach, tieuDe, tacGia, namXuatBan, giaCoBan, soLuong, viTri);
         this.theLoai = theLoai;
-        this.series = series;
+        this.laSeries = laSeries;
     }
 
-    public String getTheLoai() {
+    public void setTheLoai(String theLoai){
+        this.theLoai = theLoai;
+    }
+
+    public String getTheLoai(){
         return theLoai;
     }
 
-    public void setTheLoai(String theLoai) {
-        this.theLoai = theLoai;
+    public void setLaSeries(boolean laSeries){
+        this.laSeries = laSeries;
     }
 
-    public String getSeries() {
-        return series;
+    public boolean getLaSeries(){
+        return laSeries;
     }
 
-    public void setSeries(String series) {
-        this.series = series;
-    }
-
-    // Ghi đè phương thức tính giá bán
+    // Ghi đè tính giá bán: Giá = giá cơ bản * 1.2
     @Override
     public double tinhGiaBan() {
-        int soNamXuatBan = 2025 - super.getNamXuatBan();
-        if (laSachSeries) {
-            return super.getGiaCoBan() + 15000;
-        } else {
-            return super.getGiaCoBan();
-        }
+        return getGiaCoBan() * 1.2;
     }
 
-    // Ghi đè kiểm tra tồn kho
-    @Override
-    public boolean kiemTraTonKho(int soLuongToiThieu) {
-        return this.soLuong >= soLuongToiThieu;
-    }
-
-    // Ghi đè cập nhật vị trí
-    @Override
-    public void capNhatViTri(String viTriMoi) {
-        this.viTri = viTriMoi;
-        System.out.println("Đã chuyển sách \"" + tieuDe + "\" đến khu vực: " + viTriMoi);
-    }
-
-    // Ghi đè toString
     @Override
     public String toString() {
-        return "Sách Tiểu Thuyết - " +
-                super.toString() +
-                ", Thể loại: " + theLoai +
-                ", Series: " + series +
-                ", Giá bán: " + tinhGiaBan();
+        return super.toString() +
+                "Thể loại: " + theLoai + "\n" +
+                "là sách series: " + laSeries + "\n"+
+                "Giá bán: "+ tinhGiaBan();
     }
 }

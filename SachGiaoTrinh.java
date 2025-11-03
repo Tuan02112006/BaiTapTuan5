@@ -1,60 +1,40 @@
-// SachGiaoTrinh.java
 public class SachGiaoTrinh extends Sach {
     private String monHoc;
     private String capDo;
 
-    public SachGiaoTrinh(String tieuDe, String tacGia, int namXuatBan,
-                         double giaCoBan, int soLuong, String viTri,
-                         String monHoc, String capDo) {
-        super(tieuDe, tacGia, namXuatBan, giaCoBan, soLuong, viTri);
+    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, int namXuatBan, double giaCoBan, int soLuong, String viTri, String monHoc, String capDo) {
+        super(maSach, tieuDe, tacGia, namXuatBan, giaCoBan, soLuong, viTri);
         this.monHoc = monHoc;
         this.capDo = capDo;
     }
 
+    public void setMonHoc(String monHoc){
+        this.monHoc = monHoc;
+    }
 
-    public String getMonHoc() {
+    public String getMonHoc(){
         return monHoc;
     }
 
-    public void setMonHoc(String monHoc) {
-        this.monHoc = monHoc;
-    }
-
-    public String getCapDo() {
-        return capDo;
-    }
-
-    public void setCapDo(String capDo) {
+    public void setCapDo(String capDo){
         this.capDo = capDo;
     }
 
+    public String getCapDo(){
+        return capDo;
+    }
 
+    // Ghi đè tính giá bán: Giá = giá cơ bản * 1.1
     @Override
     public double tinhGiaBan() {
-        int soNamXuatBan = 2025 - super.getNamXuatBan();
-        return super.getGiaCoBan() + (soNamXuatBan * 5000);
+        return getGiaCoBan() * 1.1;
     }
-
-
-    @Override
-    public boolean kiemTraTonKho(int soLuongToiThieu) {
-        return this.soLuong >= soLuongToiThieu;
-    }
-
-
-    @Override
-    public void capNhatViTri(String viTriMoi) {
-        this.viTri = viTriMoi;
-        System.out.println("Đã chuyển sách \"" + tieuDe + "\" đến khu vực: " + viTriMoi);
-    }
-
 
     @Override
     public String toString() {
-        return "Sách Giáo Trình - " +
-                super.toString() +
-                ", Môn học: " + monHoc +
-                ", Cấp độ: " + capDo +
-                ", Giá bán: " + tinhGiaBan();
+        return super.toString() +
+                "Môn học: " + monHoc + "\n" +
+                "Cấp độ: " + capDo + "\n" +
+                "Giá bán: "+ tinhGiaBan();
     }
 }
