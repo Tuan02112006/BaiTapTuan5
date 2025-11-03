@@ -2,11 +2,26 @@ public class SachGiaoTrinh extends Sach {
     private String monHoc;
     private String capDo;
 
-    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, double giaCoBan,
-                         int soLuong, String viTri, String monHoc, String capDo) {
-        super(maSach, tieuDe, tacGia, giaCoBan, soLuong, viTri);
+    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, int namXuatBan, double giaCoBan, int soLuong, String viTri, String monHoc, String capDo) {
+        super(maSach, tieuDe, tacGia, namXuatBan, giaCoBan, soLuong, viTri);
         this.monHoc = monHoc;
         this.capDo = capDo;
+    }
+
+    public void setMonHoc(String monHoc){
+        this.monHoc = monHoc;
+    }
+
+    public String getMonHoc(){
+        return monHoc;
+    }
+
+    public void setCapDo(String capDo){
+        this.capDo = capDo;
+    }
+
+    public String getCapDo(){
+        return capDo;
     }
 
     // Ghi đè tính giá bán: Giá = giá cơ bản * 1.1
@@ -15,30 +30,11 @@ public class SachGiaoTrinh extends Sach {
         return getGiaCoBan() * 1.1;
     }
 
-    // Kiểm kê tồn kho
-    @Override
-    public boolean kiemTraTonKho(int soLuongToiThieu) {
-        return getSoLuong() >= soLuongToiThieu;
-    }
-
-    // Cập nhật vị trí
-    @Override
-    public void capNhatViTri(String viTriMoi) {
-        setViTri(viTriMoi);
-        System.out.println("Đã chuyển sách \"" + getTieuDe() + "\" đến khu vực: " + viTriMoi);
-    }
-
-    // Hiển thị thông tin
     @Override
     public String toString() {
-        return "Sách Giáo Trình [" +
-                "Mã: " + getMaSach() +
-                ", Tiêu đề: " + getTieuDe() +
-                ", Tác giả: " + getTacGia() +
-                ", Môn học: " + monHoc +
-                ", Cấp độ: " + capDo +
-                ", Giá bán: " + String.format("%.2f", tinhGiaBan())+
-                ", Tồn kho: " + getSoLuong() +
-                ", Vị trí: " + getViTri() + "]";
+        return super.toString() +
+                "Môn học: " + monHoc + "\n" +
+                "Cấp độ: " + capDo + "\n" +
+                "Giá bán: "+ tinhGiaBan();
     }
 }

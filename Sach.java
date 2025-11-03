@@ -1,15 +1,17 @@
 public abstract class Sach implements IGiaBan, IKiemKe {
-    private String maSach;
-    private String tieuDe;
-    private String tacGia;
-    private double giaCoBan;
-    private int soLuong;
-    private String viTri;
+    protected String maSach;
+    protected String tieuDe;
+    protected String tacGia;
+    protected int namXuatBan;
+    protected double giaCoBan;
+    protected int soLuong;
+    protected String viTri;
 
-    public Sach(String maSach, String tieuDe, String tacGia, double giaCoBan, int soLuong, String viTri) {
+    public Sach(String maSach, String tieuDe, String tacGia,int namXuatBan, double giaCoBan, int soLuong, String viTri) {
         this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
+        this.namXuatBan = namXuatBan;
         this.giaCoBan = giaCoBan;
         this.soLuong = soLuong;
         this.viTri = viTri;
@@ -40,6 +42,14 @@ public abstract class Sach implements IGiaBan, IKiemKe {
         this.tacGia = tacGia;
     }
 
+    public void setNamXuatBan(int namXuatBan) {
+        this.namXuatBan = namXuatBan;
+    }
+
+    public int getNamXuatBan() {
+        return namXuatBan;
+    }
+
     public double getGiaCoBan() {
         return giaCoBan;
     }
@@ -64,6 +74,29 @@ public abstract class Sach implements IGiaBan, IKiemKe {
         this.viTri = viTri;
     }
 
-    // Abstract: ghi đè ở lớp con
-    public abstract String toString();
+    @Override
+    public String toString() {
+        return "Mã sách: " + maSach + "\n" +
+                "Tiêu đề: " + tieuDe + "\n" +
+                "Tác giả: " + tacGia + "\n" +
+                "Năm xuất bản: " + namXuatBan + "\n" +
+                "Số lượng: " + soLuong + "\n"+
+                "Giá cơ bản: "+ giaCoBan+ "\n"+
+                "Vị Trí: "+ viTri+ "\n";
+    }
+
+    @Override
+    public abstract double tinhGiaBan();
+
+    @Override
+    public boolean kiemTraTonKho(int soLuongToiThieu){
+        return this.soLuong >= soLuongToiThieu;
+    }
+
+    @Override
+    public void capNhatViTri(String viTriMoi){
+        this.setViTri(viTriMoi);
+        System.out.println("Đã chuyển sách "+this.tieuDe+" đến khu vực : "+viTriMoi);
+    }
+
 }
